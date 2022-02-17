@@ -3,8 +3,9 @@ const express = require('express');
 
 const app = express();
 const morgan = require('morgan');
-const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
+const backEndDoctorRouter = require('./routes/backend/doctorRoutes');
+const frontEndDoctorRouter = require('./routes/front/doctorRoutes');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
@@ -21,7 +22,10 @@ app.use((req, res, next) => {
 });
 
 // 2) routes
-app.use('/api/v1/tours', tourRouter);
+//front end routes
+app.use('/api/v1/doctors', frontEndDoctorRouter);
+
+app.use('/api/v1/admin/doctors', backEndDoctorRouter);
 app.use('/api/v1/users', userRouter);
 // app.get('/api/v1/tours', getAllTours);
 // app.post('/api/v1/tours', createNewTour);
