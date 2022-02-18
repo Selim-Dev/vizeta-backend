@@ -10,12 +10,13 @@ const signToken = (id) =>
         expiresIn: process.env.JWT_EXPIRES_IN
     });
 exports.signup = catchAsync(async(req, res, next) => {
-    const { name, email, password, passwordConfirm } = req.body;
+    // console.log(req.body);
+    const { name, email, password, passwordConfirmation } = req.body;
     const newUser = await User.create({
         name,
         email,
         password,
-        passwordConfirm
+        passwordConfirmation
     });
 
     const token = signToken(newUser._id);

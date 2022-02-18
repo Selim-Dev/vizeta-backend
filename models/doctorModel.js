@@ -5,13 +5,23 @@ const doctorSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'A Doctor Must Have a Name'],
-        unique: true,
         trim: true,
-        maxLength: [40, 'A Doctor name must be less or equal characters'],
-        minLength: [10, 'A Doctor name must be greater or equal characters']
+        maxLength: [
+            40,
+            'A Doctor name must be less or equal 40 characters'
+        ],
+        minLength: [
+            4,
+            'A Doctor name must be greater or equal 4 characters'
+        ]
+    },
+    email: {
+        type: String,
+        required: [true, 'Please Provide Your Email!'],
+        validate: [validator.isEmail, 'invalid email']
     },
     phone: {
-        type: Number,
+        type: String,
         required: [true, 'A Doctor Must Have Phone']
     },
     address: {

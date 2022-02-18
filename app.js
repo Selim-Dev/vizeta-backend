@@ -8,8 +8,11 @@ const backEndDoctorRouter = require('./routes/backend/doctorRoutes');
 const frontEndDoctorRouter = require('./routes/front/doctorRoutes');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
+var cors = require('cors');
 
 // 1) Middlewares
+app.use(cors());
+
 app.use(express.json());
 
 if (process.env.NODE_ENV === 'development') {

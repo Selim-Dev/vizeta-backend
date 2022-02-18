@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
-        lowercase: true,
         required: [true, 'Please Provide Your Email!'],
         validate: [validator.isEmail, 'invalid email']
     },
@@ -23,7 +22,7 @@ const userSchema = new mongoose.Schema({
         minLength: 8,
         select: false // to prevent the return of password in any response
     },
-    passwordConfirm: {
+    passwordConfirmation: {
         type: String,
         required: [true, 'Please Provide Password Confirmation!'],
         //putting it to required means it's required input not to be required inside database
@@ -44,7 +43,7 @@ userSchema.pre('save', async function(next) {
     //we hash the password with cost of 12 (salt Round)
     this.password = await bcrypt.hash(this.password, 10);
     // delete password confirmation field
-    this.passwordConfirm = undefined;
+    this.passwordConfirmation = undefined;
     next();
 });
 

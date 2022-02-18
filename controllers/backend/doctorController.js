@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-const app = require('../../app');
 const Doctor = require('../../models/doctorModel');
 const AppError = require('../../utils/appError');
 const catchAsync = require('../../utils/catchAsync');
@@ -60,7 +59,8 @@ exports.deleteDoctor = catchAsync(async(req, res, next) => {
     if (!doctor) {
         return next(new AppError('No Doctor Found With That id', 404));
     }
-    res.status(204).json({
+    res.status(200).json({
+        // 204 record deleted
         status: 'success',
         data: null
     });
